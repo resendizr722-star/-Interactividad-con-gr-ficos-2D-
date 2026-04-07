@@ -1,3 +1,57 @@
+// =============================
+// 🔥 FONDO ANIMADO
+// =============================
+const bgCanvas = document.getElementById("bgCanvas");
+const bgCtx = bgCanvas.getContext("2d");
+
+let particles = [];
+
+function resizeBG() {
+  bgCanvas.width = window.innerWidth;
+  bgCanvas.height = window.innerHeight;
+}
+window.addEventListener("resize", resizeBG);
+resizeBG();
+
+// Crear partículas
+for (let i = 0; i < 80; i++) {
+  particles.push({
+    x: Math.random() * bgCanvas.width,
+    y: Math.random() * bgCanvas.height,
+    size: Math.random() * 3,
+    speed: Math.random() * 0.5 + 0.2
+  });
+}
+
+// Animación del fondo
+function animateBG() {
+  bgCtx.fillStyle = "#0a192f";
+  bgCtx.fillRect(0, 0, bgCanvas.width, bgCanvas.height);
+
+  bgCtx.fillStyle = "#00ffcc";
+
+  particles.forEach(p => {
+    p.y -= p.speed;
+
+    if (p.y < 0) {
+      p.y = bgCanvas.height;
+      p.x = Math.random() * bgCanvas.width;
+    }
+
+    bgCtx.beginPath();
+    bgCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+    bgCtx.fill();
+  });
+
+  requestAnimationFrame(animateBG);
+}
+
+animateBG();
+
+
+// =============================
+// 🎮 TU JUEGO (SIN CAMBIOS)
+// =============================
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 const info = document.getElementById("info");
@@ -75,7 +129,7 @@ canvas.addEventListener("pointerdown", e => {
   });
 });
 
-// 🔥 GAME OVER CON ICONO
+// GAME OVER
 function drawGameOver() {
   ctx.fillStyle = "rgba(0,0,0,0.7)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -90,13 +144,12 @@ function drawGameOver() {
   ctx.fillText(`Nivel: ${nivel}`, canvas.width/2, canvas.height/2);
   ctx.fillText(`Puntos: ${eliminados}`, canvas.width/2, canvas.height/2 + 30);
 
-  // 🔄 Icono flecha
   ctx.font = "50px Arial";
   ctx.fillText("↻", canvas.width/2, canvas.height/2 + 90);
 }
 
 // Reinicio
-canvas.addEventListener("click", e => {
+canvas.addEventListener("click", () => {
   if (gameOver) {
     objetos = [];
     eliminados = 0;
