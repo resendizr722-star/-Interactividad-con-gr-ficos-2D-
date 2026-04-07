@@ -1,46 +1,82 @@
-/* Fondo general */
 body {
   margin: 0;
-  padding: 0;
-  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-  font-family: 'Segoe UI', Arial, sans-serif;
-  color: #f0f0f0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #3a4f7a, #2c5364);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* 🔷 NAVBAR FULL WIDTH */
+.navbar {
+  width: 100%;
+  background: #0f1c2e;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+.navbar-content {
+  max-width: 1000px;
+  margin: auto;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar h1 {
+  color: #00ffcc;
+  font-size: 28px;
+  margin: 0;
+}
+
+/* MAIN */
+.main {
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 100vh;
 }
 
-/* Canvas centrado con borde */
-canvas {
-  background: #111;
-  border: 2px solid #00ffcc;
-  border-radius: 8px;
-  box-shadow: 0 0 20px rgba(0, 255, 204, 0.6);
-  display: block;
-  margin: 20px auto;
-}
-
-/* Panel de información */
+/* INFO */
 #info {
-  margin-top: 15px;
-  padding: 10px 20px;
-  background: rgba(0, 0, 0, 0.6);
-  border: 1px solid #00ffcc;
-  border-radius: 6px;
-  font-size: 1.1em;
-  text-align: center;
   color: #00ffcc;
-  box-shadow: 0 0 10px rgba(0, 255, 204, 0.4);
+  margin: 10px;
+  font-size: 18px;
 }
 
-/* Animación sutil para el texto */
-#info {
-  animation: glow 2s infinite alternate;
+/* CANVAS */
+canvas {
+  width: 80%;
+  max-width: 750px;
+  height: 50vh;
+  background: #000;
+  border: 3px solid #00ffcc;
+  border-radius: 15px;
+  box-shadow: 0 0 20px #00ffcc;
 }
 
-@keyframes glow {
-  from { text-shadow: 0 0 5px #00ffcc; }
-  to { text-shadow: 0 0 15px #00ffcc, 0 0 30px #00ffcc; }
+/* FOOTER */
+.footer {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+.footer-box {
+  width: 90%;
+  max-width: 700px;
+  background: linear-gradient(135deg, #0f2027, #2c5364);
+  border-radius: 20px;
+  text-align: center;
+  padding: 15px;
+  color: #d0e6e6;
+}
+
+.footer-box p {
+  margin: 5px 0;
+}
+
+.footer strong {
+  color: #00ffcc;
 }
